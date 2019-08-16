@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes){
-    var Games = sequlized.define("Games",{
+    var Games = sequelize.define("Games",{
         rounds : {
             type : DataTypes.INTEGER,
             allowNull : false,
@@ -22,5 +22,5 @@ module.exports = function(sequelize, DataTypes){
         },
     });
 
-    return User;
+    return Games;
 }
