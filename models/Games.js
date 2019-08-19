@@ -8,12 +8,12 @@ module.exports = function(sequelize, DataTypes){
         bullets : {
             type : DataTypes.INTEGER,
             allowNull : false,
-            defaultValue: 10
+            defaultValue: 20
         },
-        hp : {
+        life : {
             type : DataTypes.INTEGER,
             allowNull : false,
-            defaultValue: 100
+            defaultValue: 10
         },
         score : {
             type : DataTypes.INTEGER,
