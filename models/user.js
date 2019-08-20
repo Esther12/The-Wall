@@ -1,19 +1,23 @@
-module.exports = function(sequelize, DataTypes) {
-  const User = sequelize.define("User", {
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1 ,140]
-      }
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      len: [1, 140]
-    }
-    
-  });
-  
-  return User;
-};
+module.exports = function(sequelize, DataTypes){
+    var User = sequelize.define("User",{
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        name : {
+            type : DataTypes.String,
+            allowNull : false
+        },
+        password : {
+            type : DataTypes.String,
+            allowNull : false,
+            validate : {
+                len : [8,22]
+            }
+        }
+    });
+
+    return User;
+}
+
