@@ -6,6 +6,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser') 
 
 
+
 //User Login route
 router.get('/login',(req, res)=> {
   res.render('users/login');
@@ -15,7 +16,7 @@ router.get('/register',(req, res)=> {
   res.render('users/register');
 })
 
-//Register Form Post
+// //Register Form Post
 router.post('/register',(req, res) =>{
   db.User.create(req.body).then(function(user){
     res.json(user);

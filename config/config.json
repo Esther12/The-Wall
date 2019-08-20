@@ -1,13 +1,8 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "Mysql@123",
     "database": "database_user",
-=======
-    "password": "123456",
-    "database": "thewall",
->>>>>>> d59757ffa0f3397527b720f2f6acba19c00bc734
     "host": "127.0.0.1",
     "dialect": "mysql"
     
