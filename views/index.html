@@ -20,7 +20,7 @@
         <div class="cubes hide" id="d12" type = "1" >
                 <img class = "good" src="../public/images/ganster.jpg">
         </div>
-        <div class="cubes hide" id="d13" type = "0" >
+        <div class="cubes hide good" id="d13" type = "0" >
                 <img class = "good" src="../public/images/hostage.jpg">
         </div>
     
@@ -66,23 +66,14 @@
 
     <script>
         var score = 0;
+        var timer;
+        var times = 0;
         $("#startBtn").on("click",function(){
-           
-            var ID = [11,12,13,14,15,16,17,18];
-            console.log(randomId);
-
-           // console.log(imgPicker);
-            for(let i = 0; i < 6; i++){
-                var randomId = Math.floor(Math.random()* ID.length);
-                    $(`#d${ID[randomId]}`).removeClass("hide");
-                    TweenMax.to(`#d${ID[randomId]}`, 1, {x : ()=>{return Math.random() * 900}, y: function(){
-                        return Math.random() *400
-                        }});
-              };
+            times = 20;
+            roundsAndLife();
         });
         $(".mian-port").on("click", ".cubes",function(){
-            var notSelected = document.querySelectorAll(".cubes:not(.hide)");
-           console.log(notSelected);
+           
             if( $(this).attr("type") === "0" ){
                 score --;
                 $(this).addClass("hide");
@@ -94,7 +85,45 @@
             }
             $("#Score").text(score) ;
         })
+        function clearPerson(){
+        //     var notSelected = document.querySelectorAll(".cubes:not(.hide)");
+        //    console.log(notSelected);
+        //    for(let i=0; i<notSelected.length;i++){
+        //     console.log(notSelected[i].classList[1]);
+        //     var classObj = notSelected[i].classList;
+        //        // classObj.value = ""
+        //   }
+            var notSelected = document.querySelectorAll(".cubes:not(.hide)");
+            for(let i = 0; i < notSelected.length; i ++){
+               // console.log(notSelected[i]);
+                notSelected[i].className += " hide";
+               // console.log("after ",notSelected[i]);
+            }
+        }
         
+        
+        function roundsAndLife(){
+                timer = setInterval(gameStart, 500);  
+        }
+        function gameStart(){
+            clearPerson();
+            var ID = [11,12,13,14,15,16,17,18];
+
+           // console.log(imgPicker);
+            for(let i = 0; i < 6; i++){
+                var randomId = Math.floor(Math.random()* ID.length);
+                    $(`#d${ID[randomId]}`).removeClass("hide");
+                    TweenMax.to(`#d${ID[randomId]}`, 1, {x : ()=>{return Math.random() * 900}, y: function(){
+                        return Math.random() *400
+                        }});
+              };
+              times--;
+              if(times < 0){
+                clearInterval(timer);
+                alter("Times up! Ready ");
+             }
+        }
+
     </script>
 </body>
 </html>
