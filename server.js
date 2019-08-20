@@ -1,91 +1,70 @@
 //Dependencies
 //=============================================================
-var cookieParser = require("cookie-parser");
-var session = require("express-session");
-var morgan = require("morgan");
-var hbs = require("express-handlebars");
-var bodyParser = require("body-parser");
-var express = require("express");
-var path = require("path");
-
-//Sets up the express bar
-//=============================================================
-var app = express();
-var PORT = process.env.PORT || 8080;
-
+const express = require("express");
+const exphbs  = require('express-handlebars');
+const bodyParser = require('body-parser') 
+const session = require('session');
+const cookieParser = require('cookie-parser');
+const path = require('path');
 
 // Requiring data models for syncing
 var db = require("./models");
+const users = require('./routes/users');
+
+
+//Sets up the express bar
+//=============================================================
+const app = express();
+const PORT = process.env.PORT || 8080;
+
+app.engine('handlebars', exphbs({defaultlayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+//=================Router
+
+//Index Route
+app.get('/', (req, res) =>{
+  const title= 'Welcome';
+  res.render('index',{
+    title: title
+  });
+})
+//About Route
+app.get('/about', (req, res) =>{
+  res.render('about');
+});
+
+//About Ideas
+app.get('/ideas/add', (req, res) =>{
+  res.render('ideas/add');
+});
+
+//Process Form
+app.post('/ideas',(req,res) =>{
+  console.log(req.body)
+  res.send('ok');
+})
+
+
+
 
 // Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
-app.use(morgan ('dev'));
-app.use(cookieParser);
-app.use(session({
-    key: "user_sid",
-    secret:"somesecret",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        expires: 600000
-    }
-
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 
-app.engine("handlebars", hbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-    if(req.cookies.user_sid && !req.session.user){
-        res.clearCookie('user_sid');
-    }
-    next();
-});
+//app.use(morgan ('tiny'));
 
 
-// Static directory
-//app.use(express.static("public"));
+//Route
+//require("./routes/html-api-routes.js")(app);
+app.use('/users', users);
 
-// Routes
-// =============================================================
-// require("./routes/api-routes.js")(app);
- require("./routes/html-routes.js")(app);
-
-var hbsContent = {username:'', loggedin:false, title: "your are not logged in", body:"Hello world"};
-
-var sessionChecker = (req, res, next) => {
-    if(req.session.user && req.cookies.user_sid){
-        res.redirect('/dashboard');
-    }else{
-        next();
-    }
-};
-
-//Route for home page
-app.get('/', sessionChecker, (req, res) => {
-    res.redirect("/login");
-});
-
-//Route for signup page
-app.route("/signup")
-    .get((req, res) => {
-        //res.sendFile(__dirname + "/public/signup.html");
-        res.render('signup', hbsContent);
-    })
-    .post((req, res) => {
-        db.create({
-            username: req.body.username,
-            password: req.body.password
-        }).then(db => {
-            req.session.user = user.dataValues;
-            res.redirect('./dashboard');
-        }).catch(error =>{
-            res.redirect('/signup');
-        });
-    });
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: true }).then(function() {
