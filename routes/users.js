@@ -1,9 +1,11 @@
 const db = require("../models");
 const passport = require("../config/passport");
 
+var Id = 0;
 module.exports = function (app) {
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.json(req.user);
+    Id = req.user.dataValues.id;
   });
 
   app.post("/api/register", function (req, res) {
@@ -20,8 +22,10 @@ module.exports = function (app) {
   });
 
   app.post("/api/game", function (req, res) {
-    db.User.create({
-      score: req.body.score
+    db.User.update(req.body, {
+      where: {
+        id: id
+      }
     })
       .then(function () {
         res.json(req.user);
