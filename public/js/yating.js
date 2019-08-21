@@ -4,6 +4,13 @@
     var life = 10;
     var timer;
     var times = 0;
+    var widthView = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var heightView = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    $(window).ready(function() { 
+        console.log("v:w,h :  start :  ",widthView,heightView);
+
+     });
+
     $("#logout").on("click",function(){
         addRecord(score);
     })
@@ -57,9 +64,10 @@
         for(let i = 0; i < 6; i++){
             var randomId = Math.floor(Math.random()* ID.length);
                 $(`#d${ID[randomId]}`).removeClass("hide");
-                TweenMax.to(`#d${ID[randomId]}`, 1, {x : ()=>{return Math.random() * 900}, y: function(){
-                    return Math.random() *400
+                TweenMax.to(`#d${ID[randomId]}`, 1, {x : ()=>{return Math.random() * widthView}, y: ()=>{
+                    return Math.random() * heightView
                     }});
+                    console.log("v:w,h :  ",widthView,heightView);
           };
           times--;
           $("#timeLeft").text(times);
@@ -70,11 +78,16 @@
     }
 
     function addRecord(score){
-        var queryURL = "/api/user_data";
+        var queryURL = "/api/game";
         var newData = {
             score : score,
         };
-        $.post(queryURL, newData, function(data){
+        $.ajax({
+            method: "PUT",
+            url: queryURL,
+            data: newData
+          })
+            .then(function() {
             if(err) throw err;
         });
     }
