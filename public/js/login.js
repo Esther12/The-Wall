@@ -1,38 +1,39 @@
 $(document).ready(function() {
-    var username = $("#username");
-    var password = $("#password");
+  // Getting references to our form and inputs
+  var loginForm = $("form.login");
+  var userInput = $("input#user-input");
+  var passwordInput = $("input#password-input");
 
-    $(document).on("submit", "#login-form", handleLoginsubmit);
-    console.log(username);
-    function handleLoginsubmit(event) {
-        event.preventDefault();
-        // Don't do anything if the name fields hasn't been filled out
-        if (!username.val().trim().trim()) {
-          return;
-        }
-        // Calling the upsertAuthor function and passing in the value of the name input
-        userLogin({
-          name: username
-            .val()
-            .trim()
-        });
-      }
+  // When the form is submitted, we validate there's an username and password entered
+  loginForm.on("submit", function(event) {
+    event.preventDefault();
+    var userData = {
+      username: userInput.val().trim(),
+      password: passwordInput.val().trim()
+    };
 
-      // A function for creating an author. Calls getAuthors upon completion
-    function userLogin(loginData) {
-    $.post("/api/login", loginData)
-      .then(getUsers);
-  }
-
-  // Function for retrieving authors and getting them ready to be rendered to the page
-  function getUsers() {
-    $.get("/api/login", function(data) {
-      var rowsToAdd = [];
-      for (var i = 0; i < data.length; i++) {
-        rowsToAdd.push(createAuthorRow(data[i]));
-      }
-      renderAuthorList(rowsToAdd);
-      nameInput.val("");
-    });
-  }
+    if (!userData.username || !userData.password) {
+      return;
+    }
+    
+    // If we have an username and password we run the loginUser function and clear the form
+    loginUser(userData.username, userData.password);
+    userInput.val("");
+    passwordInput.val("");
   });
+
+  // loginUser does a post to our "api/login" route and if successful, redirects to game page
+  function loginUser(username, password) {
+    $.post("/api/login", {
+      username: username,
+      password: password
+    })
+      .then(function() {
+        window.location.replace("/game");
+        // If there's an error, log the error
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  }
+});

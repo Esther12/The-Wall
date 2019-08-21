@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Game Page</title>
     <style>
-        canvas {
-            /* background-color: aquamarine; */
-            background-image: url("public/img/beige-tiles.png");
+        .canvas {
+            background-color: aquamarine;
             border: 2px solid #000000;
             display: block;
             margin: auto;
         }
     </style>
 </head>
-<body onload="startGame()">
-    
-    <script type="text/javascript">
-    function startGame(){
-        gamearea();
-    }
-    var gamearea = {
-        canvas:document.createElement("canvas"),
-        start: function(){
-            this.canvas.width = 1200;
-            this.canvas.height =600;
-            document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        }
-    }
-    
-    </script>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/logout">
+                    Logout
+                </a>
+            </div>
+        </div>
+        <div class="canvas">
+            <h1>Hello World<span class="game"></span></h1>
+        </div>
+    </nav>
+
+
 </body>
+
 </html>
