@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Registration Form</h2>
+        <form class="signup">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username-input" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password-input" placeholder="Password">
+          </div>
+          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span> <span class="msg"></span>
+          </div>
+          <button type="submit" class="btn btn-default">Sign Up</button>
+        </form>
+        <br />
+        <p>Or log in <a href="login">here</a></p>
+      </div>
+    </div>
+  </div>
+
+
+{{!-- <div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="card card-body">
+        <img class="logo" src="/img/logo.png">
+      <h3 class="text-center">Account Register</h3>
+      <form action="/users/register" method="post">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username-input" class="form-control" value="{{username}}" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password-input" class="form-control" value="{{password}}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div> --}}

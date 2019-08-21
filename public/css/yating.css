@@ -2,7 +2,11 @@
     width: 10%;
     height: 140px;
     margin: 20px;
+<<<<<<< HEAD
 
+=======
+    background-color: blueviolet;
+>>>>>>> 0f18bef0060bfd594c567434d3ed694641450b99
     position:absolute;
 }
 img{
@@ -15,9 +19,12 @@ img{
 }
 .hide{
     display: none;
+<<<<<<< HEAD
 }
 
 body {
     font-family: "Lato", sans-serif;
     background-image: url("../images/fart.gif")
+=======
+>>>>>>> 0f18bef0060bfd594c567434d3ed694641450b99
 }
