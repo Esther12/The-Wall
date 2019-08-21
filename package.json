@@ -19,12 +19,9 @@
   },
   "homepage": "https://github.com/Esther12/The-Wall#readme",
   "dependencies": {
-<<<<<<< HEAD
-=======
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
->>>>>>> tejsubedi
     "eslint": "^6.1.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
