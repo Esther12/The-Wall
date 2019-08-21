@@ -16,3 +16,7 @@ img{
 .hide{
     display: none;
 }
+.logo{
+    width:130px;
+    margin:auto;
+  }
