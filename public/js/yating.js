@@ -26,11 +26,15 @@
 
         $("#Score").text(score) ;
         $("#lifeLeft").text(life);
-        console.log($(this).attr("data-type"));
-        var val =  document.querySelectorAll(".cubes");
-        for(let i = 0; i < val.length; i ++){
-        console.log(val[i].attr("data-type"));
-        }
+        
+        var state = $(this).attr("data-type");
+
+
+        // console.log($(this).attr("data-type"));
+        // var val =  document.querySelectorAll(".cubes");
+        // for(let i = 0; i < val.length; i ++){
+        // console.log(val[i].attr("data-type"));
+        // }
        // $(this).data
         // var badSelected = document.querySelectorAll('[data-type="dead"]');
     })
