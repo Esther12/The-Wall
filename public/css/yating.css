@@ -1,6 +1,19 @@
+body {
+    font-family: "Lato", sans-serif;
+    color : wheat;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../images/fart.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
 .cubes{
     width: 10%;
-    height: 140px;
+    height: auto;
     margin: 20px;
     position:absolute;
 }
@@ -16,7 +29,10 @@ img{
     display: none;
 }
 
+<<<<<<< HEAD
 body {
     font-family: "Lato", sans-serif;
     background-image: url("../images/fart.gif")
 }
+=======
+>>>>>>> 7f84336114de47e01ee9f1e4ce26daee99762593
