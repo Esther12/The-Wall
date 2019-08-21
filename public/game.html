@@ -1,36 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Game Page</title>
-    <style>
-        .canvas {
-            background-color: aquamarine;
-            border: 2px solid #000000;
-            display: block;
-            margin: auto;
-        }
-    </style>
-</head>
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel="stylesheet" href="css/yating.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+            <title>The-Wall</title>
+        </head>
 
 <body>
+    <div class="bg">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/logout">
+                <a class="navbar-brand" id="logout" href="/logout">
                     Logout
                 </a>
             </div>
         </div>
-        <div class="canvas">
-            <h1>Hello World<span class="game"></span></h1>
-        </div>
     </nav>
-
-
+        <div class="mian-port">
+                <button id = "startBtn">start</button>
+                <p id="Score"></p>
+                <div class="cubes hide" id="d11" type = "1" >
+                    <img class ="good"src="images/mainzombie123.gif">
+                </div>
+                <div class="cubes hide" id="d12" type = "0" >
+                        <img class = "good" src="images/hostage2.gif">
+                </div>
+                <div class="cubes hide good" id="d13" type = "1" >
+                        <img class = "good" src="images/bestzombie2.gif">
+                </div>
+            
+                <div class="cubes hide" id="d14" type = "0" >
+                        <img class = "good" src="images/hostage8.gif">
+                </div>
+                <div class="cubes hide" id="d15" type = "1" >
+                    <img class ="good"src="images/creepy.gif">
+                </div>
+                <div class="cubes hide" id="d16" type = "1" >
+                        <img class = "good" src="images/mainzombie123.gif">
+                </div>
+                <div class="cubes hide" id="d17" type = "0" >
+                        <img class = "good" src="images/hostage2.gif">
+                </div>
+            
+                <div class="cubes hide" id="d18" type = "1" >
+                        <img class = "good" src="images/creepy.gif">
+                </div>
+            
+            </div>
+    
+</div>
+    <script src="js/yating.js"></script>
 </body>
 
 </html>

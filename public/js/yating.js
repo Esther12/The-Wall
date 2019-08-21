@@ -4,9 +4,13 @@
     var life = 10;
     var timer;
     var times = 0;
+    $("#logout").on("click",function(){
+        addRecord(score);
+    })
     $("#startBtn").on("click",function(){
         times = 20;
         roundsAndLife();
+        getRecord();
     });
     $(".mian-port").on("click", ".cubes",function(){
         
@@ -27,25 +31,10 @@
         $("#Score").text(score) ;
         $("#lifeLeft").text(life);
         
-        var state = $(this).attr("data-type");
-
-
-        // console.log($(this).attr("data-type"));
-        // var val =  document.querySelectorAll(".cubes");
-        // for(let i = 0; i < val.length; i ++){
-        // console.log(val[i].attr("data-type"));
-        // }
-       // $(this).data
-        // var badSelected = document.querySelectorAll('[data-type="dead"]');
+        var state = $(this).attr("data-type"); 
     })
     function clearPerson(){
-    //     var notSelected = document.querySelectorAll(".cubes:not(.hide)");
-    //    console.log(notSelected);
-    //    for(let i=0; i<notSelected.length;i++){
-    //     console.log(notSelected[i].classList[1]);
-    //     var classObj = notSelected[i].classList;
-    //        // classObj.value = ""
-    //   }
+
         var notSelected = document.querySelectorAll(".cubes:not(.hide)");
         console.log("notselect",notSelected.length);
         for(let i = 0; i < notSelected.length; i ++){
@@ -56,10 +45,8 @@
         }
         
     }
-    
-    
     function roundsAndLife(){
-            timer = setInterval(gameStart, 200);  
+            timer = setInterval(gameStart, 1200);  
     }
     function gameStart(){
         clearPerson();
@@ -79,18 +66,23 @@
           if(times < 0){
             clearInterval(timer);
             alert("Times up! your total score is " +  score + " Ready for Next ?");
-            addRecord(score,life,HP);
          }
     }
 
-    function addRecord(score, life, HP){
-        var queryURL = "";
+    function addRecord(score){
+        var queryURL = "/api/user_data";
         var newData = {
             score : score,
-            life : life,
-            HP : HP
         };
         $.post(queryURL, newData, function(data){
             if(err) throw err;
-        })
+        });
     }
+
+function getRecord(){
+    var queryURL = "/api/user_data";
+    $.get(queryURL, function(data){
+        if(err) throw err;
+        $("Socre").text(data.score);
+    });
+}
