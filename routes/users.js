@@ -19,6 +19,15 @@ module.exports = function (app) {
       });
   });
 
+  app.post("/api/game", function (req, res) {
+    db.User.create({
+      score: req.body.score
+    })
+      .then(function () {
+        res.json(req.user);
+      })
+  });
+
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
@@ -36,7 +45,8 @@ module.exports = function (app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         username: req.user.username,
-        id: req.user.id
+        id: req.user.id,
+        score: req.user.score
       });
     }
   });
