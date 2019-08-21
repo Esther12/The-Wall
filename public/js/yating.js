@@ -75,5 +75,18 @@
           if(times < 0){
             clearInterval(timer);
             alert("Times up! your total score is " +  score + " Ready for Next ?");
+            addRecord(score,life,HP);
          }
+    }
+
+    function addRecord(score, life, HP){
+        var queryURL = "";
+        var newData = {
+            score : score,
+            life : life,
+            HP : HP
+        };
+        $.post(queryURL, newData, function(data){
+            if(err) throw err;
+        })
     }
