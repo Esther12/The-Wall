@@ -19,6 +19,7 @@ $(document).ready(function() {
       registerUser(userData.username, userData.password);
       userInput.val("");
       passwordInput.val("");
+      window.location.replace("/login");
     });
   
     // Does a post to the register route. If successful, we are redirected to the login page
@@ -29,7 +30,7 @@ $(document).ready(function() {
         password: password
       })
         .then(function(data) {
-          window.location.replace("/index");
+          window.location.replace("/login");
           // If there's an error, handle it by throwing up a bootstrap alert
         })
         .catch(handleLoginErr);

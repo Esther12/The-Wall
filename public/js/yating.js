@@ -1,4 +1,3 @@
-
     var score = 0;
     var HP = 100;
     var life = 10;
@@ -19,18 +18,24 @@
                         roundsAndLife();
                       }
               });
-        }else{
-            times = 20;
-            getRecord();
-            roundsAndLife();
         }
       
      });
 
+     document.addEventListener("click", play); 
+     function play(){
+        var audio = document.getElementById("audio");
 
+        audio.play();
+     }
+    $("#logout").on("click",function(){
+        window.location.replace("/logout");
+    })
     $("#startBtn").on("click",function(){
         times = 20;
         getRecord();
+        var audio1 = document.getElementById("backgroundmusic");
+        audio1.play();
         roundsAndLife();
         
     });
@@ -116,6 +121,7 @@ function getRecord(){
     $.get(queryURL, function(data){
         console.log(data.score);
         $("#Score").text(data.score);
+        score = data.score;
     });
 }
 

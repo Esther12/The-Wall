@@ -14,18 +14,18 @@
 
 <body>
     <div class="bg">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" id="logout" href="/logout">
-                    Logout
-                </a>
-            </div>
-        </div>
-    </nav>
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="container">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    
+                    <a >Score : <span id="Score"></span>| Life : <span id="lifeLeft">10</span> | Time : <span id="timeLeft">20</span></a>
+                </div>
+            </nav>
         <div class="mian-port">
-                <button id = "startBtn">start</button>
-                <p >Score : <span id="Score"></span>| Life : <span id="lifeLeft">10</span> | Time : <span id="timeLeft">20</span></p>
+                <div class="btn-group " role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary" id="logout">Logout</button>
+                    <button type="button" class="btn btn-secondary" id = "startBtn">Start</button>
+                </div>
                 <div class="cubes hide" id="d11" type = "1" >
                     <img class ="good"src="images/mainzombie123.gif">
                 </div>
@@ -54,7 +54,16 @@
                 </div>
             
             </div>
-    
+            <audio id="audio" src="audio/shoot.wav" ></audio>
+            <span hidden>
+                    <audio controls id="backgroundmusic">
+                        <source src="audio/themesong.mp3" type="audio/mp3">
+                        <!-- <source src="public/themesong.mp3" type="audio/mp3"> -->
+                            <embed loop="true">
+                        Your browser does not support the audio element.
+                      </audio>
+                    
+                    </span>
 </div>
     <script src="js/yating.js"></script>
 </body>
