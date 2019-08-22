@@ -3,10 +3,11 @@ var user = {
     password: ''
 }
 
-user.username = document.getElementById("username").value()
+user.username = document.getElementById("user-input").value()
 
-user.password = document.getElementById("password").value()
+user.password = document.getElementById("password-input").value()
 
 $.post( "/signup", user).then(function(value){
     console.log(value);
 });
+
