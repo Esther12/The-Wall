@@ -9,6 +9,7 @@
             <link rel="stylesheet" href="css/yating.css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
             <title>The-Wall</title>
         </head>
 
@@ -16,15 +17,15 @@
     <div class="bg">
             <nav class="navbar navbar-dark bg-dark">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Navbar</a>
+                    <a class="navbar-brand" href="#">Zombie Blasters</a>
                     
-                    <a >Score : <span id="Score"></span>| Life : <span id="lifeLeft">10</span> | Time : <span id="timeLeft">20</span></a>
+                    <a >Score : <span id="Score"></span>| Life : <span id="lifeLeft">10</span> | Time : <span id="timeLeft">30</span></a>
                 </div>
             </nav>
         <div class="mian-port">
                 <div class="btn-group " role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary" id="logout">Logout</button>
-                    <button type="button" class="btn btn-secondary" id = "startBtn">Start</button>
+                    <button type="button" class="btn btn-secondary logout">Logout</button>
+                    <button type="button" class="btn btn-secondary startBtn">Start</button>
                 </div>
                 <div class="cubes hide" id="d11" type = "1" >
                     <img class ="good"src="images/mainzombie123.gif">
@@ -63,8 +64,27 @@
                         Your browser does not support the audio element.
                       </audio>
                     
-                    </span>
+            </span>
 </div>
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="userName">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h1>You Loss!!!</h1>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary logout" data-dismiss="modal">Logout</button>
+              <button type="button" class="btn btn-primary "id ="playAgain">Play Again</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <script src="js/yating.js"></script>
 </body>
 

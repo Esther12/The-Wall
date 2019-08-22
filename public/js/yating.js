@@ -3,9 +3,10 @@
     var life = 3;
     var timer;
     var times = 0;
+    var userName = "";
     var widthView = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     var heightView = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    $(window).ready(function() { 
+    $( window ).on( "load",function() { 
         getRecord();
         console.log("v:w,h :  start :  ",widthView,heightView);
         if(widthView < 700){
@@ -21,22 +22,22 @@
         }
       
      });
-
+     document.getElementsByClassName("bg").onload = function() {getRecord()};
      document.addEventListener("click", play); 
      function play(){
         var audio = document.getElementById("audio");
 
         audio.play();
      }
-    $("#logout").on("click",function(){
+    $(".logout").on("click",function(){
         window.location.replace("/logout");
     })
-    $("#startBtn").on("click",function(){
-        times = 20;
-        getRecord();
+    $(".startBtn").on("click",function(){
+        times = 30;
         var audio1 = document.getElementById("backgroundmusic");
         audio1.play();
         roundsAndLife();
+        addRecord(score);
         
     });
     $(".mian-port").on("click", ".cubes",function(){
@@ -61,6 +62,10 @@
         $("#lifeLeft").text(life);
         
         var state = $(this).attr("data-type"); 
+    });
+    $("#playAgain").on("click",()=>{
+        window.location.replace("/game");
+        addRecord(score);
     })
     function clearPerson(){
 
@@ -79,7 +84,9 @@
     }
     function gameStart(){
         clearPerson();
-
+        if(life <= 0){
+            $("#myModal").modal("show");
+        }
         var ID = [11,12,13,14,15,16,17,18];
 
        // console.log(imgPicker);
@@ -95,7 +102,6 @@
           $("#timeLeft").text(times);
           if(times < 1){
             clearInterval(timer);
-            addRecord(score);
            // alert("Times up! your total score is " +  score + " Ready for Next ?");
          }
     }
@@ -122,7 +128,11 @@ function getRecord(){
     $.get(queryURL, function(data){
         console.log(data.score);
         $("#Score").text(data.score);
+        $("#userName").text(data.username);
         score = data.score;
+        userName = data.username;
     });
 }
+
+    
 
