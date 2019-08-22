@@ -7,20 +7,36 @@
     var widthView = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     var heightView = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     $(window).ready(function() { 
+        getRecord();
         console.log("v:w,h :  start :  ",widthView,heightView);
-
+        if(widthView < 700){
+            window.addEventListener("orientationchange", function () {
+                console.log("The orientation of the screen is: " + screen.orientation.type);
+                if(screen.orientation.type == "portrait-primary"){
+                    screen.orientation.lock("landscape");
+                        times = 20;
+                        getRecord();
+                        roundsAndLife();
+                      }
+              });
+        }else{
+            times = 20;
+            getRecord();
+            roundsAndLife();
+        }
+      
      });
 
-    $("#logout").on("click",function(){
-        addRecord(score);
-    })
+
     $("#startBtn").on("click",function(){
         times = 20;
-        roundsAndLife();
         getRecord();
+        roundsAndLife();
+        
     });
     $(".mian-port").on("click", ".cubes",function(){
         
+        console.log(score);
         if( $(this).attr("type") === "0" ){
             score --;
             life --;
@@ -71,9 +87,10 @@
           };
           times--;
           $("#timeLeft").text(times);
-          if(times < 0){
+          if(times < 1){
             clearInterval(timer);
-            alert("Times up! your total score is " +  score + " Ready for Next ?");
+            addRecord(score);
+           // alert("Times up! your total score is " +  score + " Ready for Next ?");
          }
     }
 
@@ -87,15 +104,18 @@
             url: queryURL,
             data: newData
           })
-            .then(function() {
+            .then(function(err,data) {
             if(err) throw err;
+            console.log('server responded');
+            window.location.replace("http://localhost:8080");
         });
     }
 
 function getRecord(){
     var queryURL = "/api/user_data";
     $.get(queryURL, function(data){
-        if(err) throw err;
-        $("Socre").text(data.score);
+        console.log(data.score);
+        $("#Score").text(data.score);
     });
 }
+
