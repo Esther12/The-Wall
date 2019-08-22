@@ -1,7 +1,7 @@
 const db = require("../models");
 const passport = require("../config/passport");
-
 var Id = 0;
+
 module.exports = function (app) {
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.json(req.user);
@@ -21,7 +21,7 @@ module.exports = function (app) {
       });
   });
 
-  app.post("/api/game", function (req, res) {
+  app.put("/api/game", function (req, res) {
     db.User.update(req.body, {
       where: {
         id: id
