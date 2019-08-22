@@ -1,6 +1,6 @@
     var score = 0;
     var HP = 100;
-    var life = 10;
+    var life = 3;
     var timer;
     var times = 0;
     var widthView = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -46,8 +46,9 @@
             score --;
             life --;
             $(this).addClass("hide");
-            
             console.log(score);
+            clearInterval(timer);
+            $("#timeLeft").text(0);
             
         }else if($(this).attr("type") === "1"){
             score ++;
