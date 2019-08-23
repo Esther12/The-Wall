@@ -6,20 +6,24 @@
     var userName = "";
     var widthView = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     var heightView = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    $("#playAgain").on("click",()=>{
+        addRecord(score);
+        window.location.replace("/game");
+    })
     $( window ).on( "load",function() { 
         getRecord();
         console.log("v:w,h :  start :  ",widthView,heightView);
-        if(widthView < 700){
             window.addEventListener("orientationchange", function () {
                 console.log("The orientation of the screen is: " + screen.orientation.type);
                 if(screen.orientation.type == "portrait-primary"){
                     screen.orientation.lock("landscape");
-                        times = 20;
-                        getRecord();
-                        roundsAndLife();
+                    $(".stat-logout").addClass("hide");
+                      }
+                      else{
+                        $(".stat-logout").removeClass("hide");
                       }
               });
-        }
+        
       
      });
      document.getElementsByClassName("bg").onload = function() {getRecord()};
@@ -63,10 +67,7 @@
         
         var state = $(this).attr("data-type"); 
     });
-    $("#playAgain").on("click",()=>{
-        window.location.replace("/game");
-        addRecord(score);
-    })
+    
     function clearPerson(){
 
         var notSelected = document.querySelectorAll(".cubes:not(.hide)");
