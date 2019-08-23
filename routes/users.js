@@ -55,5 +55,11 @@ module.exports = function (app) {
       });
     }
   });
+  app.get("/api/user_rank", function(req,res){
+    db.User.findAll({})
+      .then(function(dbRank) {
+        res.json(dbRank);
+      });
+  })
 
 }

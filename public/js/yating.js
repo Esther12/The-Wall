@@ -12,6 +12,7 @@
     })
     $( window ).on( "load",function() { 
         getRecord();
+        getRank();
         console.log("v:w,h :  start :  ",widthView,heightView);
             window.addEventListener("orientationchange", function () {
                 console.log("The orientation of the screen is: " + screen.orientation.type);
@@ -132,6 +133,26 @@ function getRecord(){
         $("#userName").text(data.username);
         score = data.score;
         userName = data.username;
+    });
+}
+
+function getRank(){
+    var queryURL = "/api/user_rank";
+    $.get(queryURL, function(data){
+       // console.log(data[0]);
+        var winner = {};
+        for (var i = 0; i < data.length; i++) {
+            if (Object.keys(winner).length == 0) {
+                console.log(Object.keys(winner).length);
+                winner = data[i];
+            } else {
+                if (data[i].score > winner.score) {
+                    winner = data[i];
+                }
+            }
+        }
+        console.log(winner);
+        $(".rank").text(`The User : ${winner.username}  has the highest score ${winner.score}`);
     });
 }
 
