@@ -8,7 +8,6 @@
 - Get the highest score you can in 30 seconds.
 
 # Technology Used
-
 **HTML, CSS, Javascript, MySQL, jQuery, GreenSock JS, node.js, express, sequelize, eslint, passport, bcryptjs and session**
 
 ## Desktop view :
@@ -27,3 +26,7 @@ https://youtu.be/meW6WuRShX8
 
 - Heroku: https://zombie-blasters.herokuapp.com
 - Github: https://github.com/Esther12/The-Wall
+
+# Team invloved:
+- Front-end Team: Quinn and Kendal 
+- Back-end Team: Yating and Tej
