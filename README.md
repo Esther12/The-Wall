@@ -22,6 +22,11 @@ https://youtu.be/__HEn-HgMuA
 https://youtu.be/meW6WuRShX8
 ```
 
+### Login in page
+![Screenshot](/public/images/readme1.png)
+
+### Main play page
+![Screenshot](/public/images/readme2.png)
 # Deployment
 
 - Heroku: https://zombie-blasters.herokuapp.com
